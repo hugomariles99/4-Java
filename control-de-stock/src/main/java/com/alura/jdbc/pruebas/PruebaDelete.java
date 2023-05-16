@@ -1,17 +1,23 @@
+
 package com.alura.jdbc.pruebas;
 
 import com.alura.jdbc.factory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class PruebaConexion {
-
+public class PruebaDelete {
+    
     public static void main(String[] args) throws SQLException {
+        
         Connection con = new ConnectionFactory().recuperaConexion();
 
-        System.out.println("Cerrando la conexion");
+        Statement statement = con.createStatement();
 
-        con.close();
+        statement.execute("DELETE FROM PRODUCTO WHERE ID = 99");
+
+        System.out.println(statement.getUpdateCount());
+        
     }
-
+    
 }
